@@ -22,7 +22,7 @@ export default function MonitorScreen() {
   // Add Leva controls
   const controls = useControls('Monitor Screen', {
     positionX: { value: -2.07, min: -5, max: 5, step: 0.0001 },
-    positionY: { value: 4.125, min: -5, max: 5, step: 0.0001 },
+    positionY: { value: 3.11, min: -5, max: 5, step: 0.0001 },
     positionZ: { value: 2.92, min: -5, max: 5, step: 0.0001 },
     rotationX: { value: 0, min: -Math.PI, max: Math.PI, step: 0.01 },
     rotationY: { value: Math.PI / 2, min: -Math.PI, max: Math.PI, step: 0.01 },

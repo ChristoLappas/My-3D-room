@@ -223,13 +223,6 @@ export default function Room(props) {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.computer_screen.geometry}
-        material={materials.screen}
-        position={[-2.322, 2.084, 2.71]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.Plane019.geometry}
         material={materials.button}
         position={[-2.053, 2.366, 3.274]}
@@ -258,31 +251,38 @@ export default function Room(props) {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.Plane024.geometry}
-        material={materials.tape}
-        position={[-3.463, 4.316, 1.407]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Plane026.geometry}
-        material={materials.tape}
-        position={[-3.463, 2.674, 0.137]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Plane027.geometry}
-        material={materials.tape}
-        position={[-3.463, 2.678, 1.428]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Plane025.geometry}
-        material={materials.tape}
-        position={[-3.463, 4.316, 0.15]}
-      />
+        geometry={nodes.Plane023.geometry}
+        material={materials.poster}
+        position={[-3.47, 3.501, 0.79]}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Plane024.geometry}
+          material={materials.tape}
+          position={[0.006, 0.814, 0.617]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Plane025.geometry}
+          material={materials.tape}
+          position={[0.006, 0.814, -0.64]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Plane026.geometry}
+          material={materials.tape}
+          position={[0.006, -0.828, -0.653]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Plane027.geometry}
+          material={materials.tape}
+          position={[0.006, -0.824, 0.637]}
+        />
+      </mesh>
       <group position={[2.545, 3.27, -0.077]}>
         <mesh
           castShadow

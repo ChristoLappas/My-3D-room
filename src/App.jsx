@@ -5,7 +5,7 @@ import Room from './Room.jsx'
 import MonitorScreen from './MonitorScreen.jsx'
 
 export default function App() {
-  const gltf = useLoader(GLTFLoader, './models/room.glb')
+  // const gltf = useLoader(GLTFLoader, './models/room.glb')
 
   return (
     <>
@@ -18,8 +18,9 @@ export default function App() {
         />  */}
         <Environment preset="city" background backgroundBlurriness={1} />
         <directionalLight position={[3.3, 1.0, 4.4]} />
-        <primitive object={gltf.scene} position={[0, 1, 0]} />
-        <MonitorScreen occlude/>
+        {/* <primitive object={gltf.scene} position={[0, 1, 0]} /> */}
+        <Room />
+        <MonitorScreen />
         <OrbitControls target={[0, 1, 0]} maxPolarAngle={Math.PI / 2}/>
         {/* <axesHelper args={[5]} /> */}
         <Stats />
