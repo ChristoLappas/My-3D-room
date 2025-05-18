@@ -6,8 +6,8 @@ import { useControls } from 'leva'
 import { Vector3, Raycaster } from 'three'
 
 const SCREEN_SIZE = {
-  width: 980,  // Converting from meters to pixels (0.8m * 1000)
-  height: 800   // Converting from meters to pixels (0.98m * 1000)
+  width: 1000,  // Converting from meters to pixels (0.8m * 1000)
+  height: 720   // Converting from meters to pixels (0.98m * 1000)
 }
 
 const IFRAME_PADDING = 20
@@ -21,9 +21,9 @@ export default function MonitorScreen() {
 
   // Add Leva controls
   const controls = useControls('Monitor Screen', {
-    positionX: { value: -2.07, min: -5, max: 5, step: 0.0001 },
-    positionY: { value: 3.11, min: -5, max: 5, step: 0.0001 },
-    positionZ: { value: 2.92, min: -5, max: 5, step: 0.0001 },
+    positionX: { value: -2.11, min: -5, max: 5, step: 0.0001 },
+    positionY: { value: 3.17, min: -5, max: 5, step: 0.0001 },
+    positionZ: { value: 2.93, min: -5, max: 5, step: 0.0001 },
     rotationX: { value: 0, min: -Math.PI, max: Math.PI, step: 0.01 },
     rotationY: { value: Math.PI / 2, min: -Math.PI, max: Math.PI, step: 0.01 },
     rotationZ: { value: 0, min: -Math.PI, max: Math.PI, step: 0.01 },
