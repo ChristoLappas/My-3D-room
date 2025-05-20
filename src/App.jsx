@@ -2,10 +2,11 @@ import { Stats, OrbitControls, Environment, Html } from '@react-three/drei'
 import { Canvas, useLoader } from '@react-three/fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import Room from './Room.jsx'
+import Room2 from './Room2.jsx'
 import MonitorScreen from './MonitorScreen.jsx'
 
 export default function App() {
-  // const gltf = useLoader(GLTFLoader, './models/room.glb')
+  const gltf = useLoader(GLTFLoader, './models/room_new_screen.glb')
 
   return (
     <>
@@ -18,8 +19,9 @@ export default function App() {
         />  */}
         <Environment preset="city" background backgroundBlurriness={1} />
         <directionalLight position={[3.3, 1.0, 4.4]} />
-        {/* <primitive object={gltf.scene} position={[0, 1, 0]} /> */}
-        <Room />
+        <primitive object={gltf.scene} position={[0, 1, 0]} />
+        {/* <Room /> */}
+        {/* <Room2 /> */}
         <MonitorScreen />
         <OrbitControls target={[0, 1, 0]} maxPolarAngle={Math.PI / 2}/>
         {/* <axesHelper args={[5]} /> */}
