@@ -6,8 +6,8 @@ import { useControls } from 'leva'
 import { Vector3, Raycaster } from 'three'
 
 const SCREEN_SIZE = {
-  width: 0.8,  // Reduced to meters (typical monitor width)
-  height: 0.6  // Reduced to meters (typical monitor height)
+  width: 1.08,  // Reduced to meters (typical monitor width)
+  height: 0.86  // Reduced to meters (typical monitor height)
 }
 
 const IFRAME_PADDING = 20
@@ -26,10 +26,10 @@ export default function MonitorScreen() {
 
   // Add Leva controls
   const controls = useControls('Monitor Screen', {
-    positionX: { value: -2.11, min: -5, max: 5, step: 0.00001 },
-    positionY: { value: 3.17, min: -5, max: 5, step: 0.00001 },
-    positionZ: { value: 2.95, min: -5, max: 5, step: 0.00001 },
-    rotationX: { value: 0, min: -Math.PI, max: Math.PI, step: 0.01 },
+    positionX: { value: -1.76, min: -5, max: 5, step: 0.00001 },
+    positionY: { value: 4.34, min: -5, max: 5, step: 0.00001 },
+    positionZ: { value: 2.6, min: -5, max: 5, step: 0.00001 },
+    rotationX: { value: -0.08, min: -Math.PI, max: Math.PI, step: 0.01 },
     rotationY: { value: Math.PI / 2, min: -Math.PI, max: Math.PI, step: 0.01 },
     rotationZ: { value: 0, min: -Math.PI, max: Math.PI, step: 0.01 },
     scale: { value: 0.001, min: 0.0001, max: 0.01, step: 0.0001 }
@@ -70,7 +70,7 @@ export default function MonitorScreen() {
       depthTest: true,    // Still test depth with other objects
     })
 
-    const geometry = new THREE.PlaneGeometry(0.9, 0.68)
+    const geometry = new THREE.PlaneGeometry(1.08, 0.86)
     const mesh = new THREE.Mesh(geometry, material)
 
     // Copy position and apply the depth offset
@@ -81,8 +81,15 @@ export default function MonitorScreen() {
     )
     mesh.position.copy(position)
 
-    // Copy rotation
-    mesh.rotation.set(controls.rotationX, controls.rotationY, controls.rotationZ)
+    // Copy rotation using quaternions for proper rotation order
+    const quaternion = new THREE.Quaternion()
+    quaternion.setFromEuler(new THREE.Euler(
+      controls.rotationX,
+      controls.rotationY,
+      controls.rotationZ,
+      'YXZ'  // Order matters: Y first, then X, then Z
+    ))
+    mesh.quaternion.copy(quaternion)
 
     // Add to scene
     scene.add(mesh)
@@ -389,9 +396,16 @@ export default function MonitorScreen() {
       object.current.position.set(controls.positionX, controls.positionY, controls.positionZ)
       mesh.current.position.copy(object.current.position)
 
-      // Update rotation
-      object.current.rotation.set(controls.rotationX, controls.rotationY, controls.rotationZ)
-      mesh.current.rotation.copy(object.current.rotation)
+      // Update rotation using quaternions for proper rotation order
+      const quaternion = new THREE.Quaternion()
+      quaternion.setFromEuler(new THREE.Euler(
+        controls.rotationX,
+        controls.rotationY,
+        controls.rotationZ,
+        'YXZ'  // Order matters: Y first, then X, then Z
+      ))
+      object.current.quaternion.copy(quaternion)
+      mesh.current.quaternion.copy(quaternion)
 
       // Update scale
       const scale = controls.scale
