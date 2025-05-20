@@ -1,8 +1,12 @@
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
+import { useVideoTexture, useStaticTexture } from './TvScreen'
+import * as THREE from 'three'
 
 export default function Room2(props) {
-  const { nodes, materials } = useGLTF('./models/room2.glb')
+  const texture = useVideoTexture('/video/sopranos_trailer.mp4')
+  const staticTexture = useStaticTexture('/video/real.mp4')
+  const { nodes, materials } = useGLTF('./models/room_new_screen.glb')
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -69,31 +73,17 @@ export default function Room2(props) {
           material={materials.wood}
         />
       </mesh>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Plane011.geometry}
-        material={materials.computer_color}
-        position={[-2.322, 2.084, 2.71]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Plane013.geometry}
-        material={materials.computer_color}
-        position={[-1.44, 2.083, 1.715]}
-      />
       <group position={[0.832, 0.201, 2.763]} rotation={[0, -0.066, 0]}>
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Mesh_1.geometry}
+          geometry={nodes.Mesh.geometry}
           material={materials.Material}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Mesh_2.geometry}
+          geometry={nodes.Mesh_1.geometry}
           material={materials['Material.002']}
         />
         <mesh
@@ -116,13 +106,13 @@ export default function Room2(props) {
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes.Mesh_3.geometry}
+            geometry={nodes.Mesh_2.geometry}
             material={materials.Material}
           />
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes.Mesh_4.geometry}
+            geometry={nodes.Mesh_3.geometry}
             material={materials['Material.002']}
           />
         </group>
@@ -130,13 +120,13 @@ export default function Room2(props) {
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes.Mesh_5.geometry}
+            geometry={nodes.Mesh_4.geometry}
             material={materials.Material}
           />
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes.Mesh_6.geometry}
+            geometry={nodes.Mesh_5.geometry}
             material={materials['Material.002']}
           />
         </group>
@@ -144,13 +134,13 @@ export default function Room2(props) {
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes.Mesh_7.geometry}
+            geometry={nodes.Mesh_6.geometry}
             material={materials.Material}
           />
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes.Mesh_8.geometry}
+            geometry={nodes.Mesh_7.geometry}
             material={materials['Material.002']}
           />
         </group>
@@ -205,41 +195,6 @@ export default function Room2(props) {
         geometry={nodes.Plane016.geometry}
         material={materials.wood}
         position={[2.723, 0.008, -2.665]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Plane017.geometry}
-        material={materials.cable}
-        position={[-1.372, 2.054, 2.924]}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane012.geometry}
-          material={materials.computer_color}
-          position={[0, 0.03, -0.001]}
-        />
-      </mesh>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Plane019.geometry}
-        material={materials.button}
-        position={[-2.053, 2.366, 3.274]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Vert.geometry}
-        material={materials.cable}
-        position={[-1.79, 2.129, 3.368]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Vert001.geometry}
-        material={materials.cable}
-        position={[-1.653, 2.137, 1.665]}
       />
       <mesh
         castShadow
@@ -431,8 +386,32 @@ export default function Room2(props) {
           castShadow
           receiveShadow
           geometry={nodes.tv_screen.geometry}
-          material={materials['Material.010']}
-        />
+          position={[0, 0, 0]}
+        >
+          {texture ? (
+            <meshStandardMaterial 
+              map={texture} 
+              toneMapped={false}
+              side={THREE.DoubleSide}
+            />
+          ) : (
+            <meshStandardMaterial color="black" />
+          )}
+        </mesh>
+        <mesh
+          geometry={nodes.tv_screen.geometry}
+          position={[0, 0, 0.001]} // smaller offset to prevent z-fighting
+        >
+          {staticTexture ? (
+            <meshStandardMaterial
+              map={staticTexture}
+              transparent={false}
+              opacity={1}
+              side={THREE.DoubleSide}
+              blending={THREE.AdditiveBlending}
+            />
+          ) : null}
+        </mesh>
       </mesh>
       <mesh
         castShadow
@@ -556,6 +535,51 @@ export default function Room2(props) {
       <mesh
         castShadow
         receiveShadow
+        geometry={nodes.mouse.geometry}
+        material={materials['Material.024']}
+        position={[-2.32, 2.484, 2.551]}
+        rotation={[0, 1.562, 0]}
+        scale={0.799}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.monitor_base.geometry}
+        material={materials['Material.024']}
+        position={[-2.091, 2.484, 2.589]}
+        rotation={[0, 1.562, 0]}
+        scale={0.799}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.keyboard.geometry}
+        material={materials['Material.024']}
+        position={[-2.238, 2.484, 2.588]}
+        rotation={[0, 1.562, 0]}
+        scale={0.799}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.computer.geometry}
+        material={materials['Material.024']}
+        position={[-2.091, 2.484, 2.589]}
+        rotation={[0, 1.562, 0]}
+        scale={0.799}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.cables.geometry}
+        material={materials['Material.025']}
+        position={[-2.091, 2.484, 2.589]}
+        rotation={[0, 1.562, 0]}
+        scale={0.799}
+      />
+      <mesh
+        castShadow
+        receiveShadow
         geometry={nodes.Cube001.geometry}
         material={materials.wood_1}
         position={[-0.873, 3.481, -3.475]}
@@ -590,4 +614,4 @@ export default function Room2(props) {
   )
 }
 
-useGLTF.preload('./models/room2.glb')
+useGLTF.preload('./models/room_new_screen.glb')

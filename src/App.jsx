@@ -6,7 +6,7 @@ import Room2 from './Room2.jsx'
 import MonitorScreen from './MonitorScreen.jsx'
 
 export default function App() {
-  const gltf = useLoader(GLTFLoader, './models/room_new_screen.glb')
+  // const gltf = useLoader(GLTFLoader, './models/room_new_screen.glb')
 
   return (
     <>
@@ -19,13 +19,13 @@ export default function App() {
         />  */}
         <Environment preset="city" background backgroundBlurriness={1} />
         <directionalLight position={[3.3, 1.0, 4.4]} />
-        <primitive object={gltf.scene} position={[0, 1, 0]} />
+        {/* <primitive object={gltf.scene} position={[0, 0, 0]} /> */}
         {/* <Room /> */}
-        {/* <Room2 /> */}
+        <Room2 />
         <MonitorScreen />
         <OrbitControls target={[0, 1, 0]} maxPolarAngle={Math.PI / 2}/>
         {/* <axesHelper args={[5]} /> */}
-        <Stats />
+        {/* <Stats /> */}
       </Canvas>
       <div id="css-renderer" style={{ position: 'fixed', top: 0, left: 0, pointerEvents: 'none' }} />
     </>
