@@ -264,12 +264,12 @@ export default function MonitorScreen() {
     container.style.width = (SCREEN_SIZE.width * 1000) + 'px'  // Convert meters to pixels
     container.style.height = (SCREEN_SIZE.height * 1000) + 'px'  // Convert meters to pixels
     container.style.opacity = '1'
-    container.style.background = '#000000'
-    container.style.borderRadius = '30px'
+    container.style.background = '#001309'
+    // container.style.borderRadius = '30px'
 
     // Create iframe
     const iframe = document.createElement('iframe')
-    iframe.src = 'https://subterra-bjj.be'
+    iframe.src = 'https://devdate.fly.dev'
     iframe.style.width = (SCREEN_SIZE.width * 1000) + 'px'  // Convert meters to pixels
     iframe.style.height = (SCREEN_SIZE.height * 1000) + 'px'  // Convert meters to pixels
     iframe.style.padding = IFRAME_PADDING + 'px'
@@ -278,7 +278,7 @@ export default function MonitorScreen() {
     iframe.id = 'computer-screen'
     iframe.frameBorder = '0'
     iframe.style.pointerEvents = 'auto'
-    iframe.style.borderRadius = '30px'
+    // iframe.style.borderRadius = '30px'
 
     // Add iframe to container
     container.appendChild(iframe)
