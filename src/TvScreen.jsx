@@ -1,4 +1,3 @@
-// useVideoTexture.js
 import { useEffect, useState } from 'react'
 import * as THREE from 'three'
 
@@ -53,7 +52,6 @@ export function useStaticTexture(src) {
       setTexture(videoTexture)
     })
 
-    // Cleanup function
     return () => {
       video.pause()
       video.remove()
