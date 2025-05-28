@@ -47,7 +47,7 @@ export default function MonitorScreen() {
     container.style.background = '#001309'
 
     const iframe = document.createElement('iframe')
-    iframe.src = 'https://christo.lappas.be'
+    iframe.src = 'https://xp.lappas.be'
     iframe.style.width = (SCREEN_SIZE.width * 1000) + 'px'  // Convert meters to pixels
     iframe.style.height = (SCREEN_SIZE.height * 1000) + 'px'  // Convert meters to pixels
     iframe.style.padding = IFRAME_PADDING + 'px'
