@@ -2,8 +2,9 @@ import { Stats, OrbitControls, Environment } from '@react-three/drei'
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
 import Room from './Room.jsx'
 import MonitorScreen from './MonitorScreen.jsx'
-import { useState, useRef } from 'react'
+import { useState, useRef, Suspense } from 'react'
 import * as THREE from 'three'
+import LoadingScreen from './LoadingScreen'
 
 function useSmoothQuaternionLerp(targetQuaternion, lerpFactor = 0.05) {
   const { camera } = useThree()
@@ -55,28 +56,31 @@ export default function App() {
           padding: '5px',
           fontSize: '16px',
           fontFamily: 'Arial',
-          textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
+          textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
         }}
-        onClick={() => setIsFixedCamera(!isFixedCamera)}
-      >
+        onClick={() => setIsFixedCamera(!isFixedCamera)}>
         <tt>{isFixedCamera ? 'Click to free camera' : 'Click to view monitor'}</tt>
       </div>
 
       <Canvas camera={{ position: initialCameraPosition, fov: 50 }}>
-        <CameraController isFixedCamera={isFixedCamera} />
-        <Environment preset="city" background backgroundBlurriness={1} />
-        <directionalLight position={[3.3, 1.0, 4.4]} />
-        <Room />
-        <MonitorScreen />
-        <OrbitControls
-          target={new THREE.Vector3(...initialTarget)}
-          maxPolarAngle={Math.PI / 2}
-          // minDistance={0.5} 
-          maxDistance={20}
-          enableDamping={true}   
-          dampingFactor={0.1}
-          enabled={!isFixedCamera}
-        />
+        <Suspense fallback={<LoadingScreen />}>
+          <CameraController isFixedCamera={isFixedCamera} />
+          <Environment preset="city" background backgroundBlurriness={1} />
+          <directionalLight position={[3.3, 1.0, 4.4]} />
+
+          <Room />
+          <MonitorScreen />
+
+          <OrbitControls
+            target={new THREE.Vector3(...initialTarget)}
+            maxPolarAngle={Math.PI / 2}
+            // minDistance={0.5}
+            maxDistance={20}
+            enableDamping={true}
+            dampingFactor={0.1}
+            enabled={!isFixedCamera}
+          />
+        </Suspense>
       </Canvas>
 
       <div id="css-renderer" style={{ position: 'fixed', top: 0, left: 0, pointerEvents: 'none' }} />

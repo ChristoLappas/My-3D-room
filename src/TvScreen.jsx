@@ -40,7 +40,6 @@ export function useStaticTexture(src) {
     video.autoplay = true
 
     video.addEventListener('loadeddata', () => {
-      console.log('Video data loaded:', src)
       video.play().catch(error => {
         console.error('Error playing video:', error)
       })
