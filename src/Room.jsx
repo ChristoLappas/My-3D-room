@@ -269,14 +269,14 @@ export default function Room(props) {
         receiveShadow
         geometry={nodes.Plane018.geometry}
         material={materials.venusaur}
-        position={[-1.054, 2.083, -1.232]}
+        position={[-1.054, 2.086, -1.232]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Plane038.geometry}
         material={materials['Material.008']}
-        position={[-1.253, 2.083, -1.013]}
+        position={[-1.253, 2.088, -1.013]}
       />
       <mesh
         castShadow
@@ -304,7 +304,7 @@ export default function Room(props) {
         receiveShadow
         geometry={nodes.Plane043.geometry}
         material={materials['Material.011']}
-        position={[-1.401, 2.087, -1.265]}
+        position={[-1.401, 2.1, -1.265]}
       />
       <mesh
         castShadow
