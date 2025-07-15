@@ -5,7 +5,7 @@ import * as THREE from 'three'
 export default function Room(props) {
   const texture = useVideoTexture('/video/sopranos_trailer.mp4')
   const staticTexture = useStaticTexture('/video/real.mp4')
-  const { nodes, materials } = useGLTF('https://cdn.lappas.be/room2.glb')
+  const { nodes, materials } = useGLTF('https://cdn.lappas.be/room3.glb')  
   return (
     <group {...props} dispose={null}>
       <mesh castShadow receiveShadow geometry={nodes.Plane.geometry} material={nodes.Plane.material} />
@@ -269,21 +269,21 @@ export default function Room(props) {
         receiveShadow
         geometry={nodes.Plane018.geometry}
         material={materials.venusaur}
-        position={[-1.054, 2.086, -1.232]}
+        position={[-1.054, 2.084, -1.232]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Plane038.geometry}
         material={materials['Material.008']}
-        position={[-1.253, 2.088, -1.013]}
+        position={[-1.253, 2.086, -1.013]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Plane040.geometry}
         material={materials['Material.009']}
-        position={[-1.206, 2.084, -1.489]}
+        position={[-1.206, 2.086, -1.489]}
       />
       <mesh
         castShadow
@@ -304,7 +304,7 @@ export default function Room(props) {
         receiveShadow
         geometry={nodes.Plane043.geometry}
         material={materials['Material.011']}
-        position={[-1.401, 2.1, -1.265]}
+        position={[-1.401, 2.089, -1.265]}
       />
       <mesh
         castShadow
@@ -585,4 +585,4 @@ export default function Room(props) {
   )
 }
 
-useGLTF.preload('https://cdn.lappas.be/room2.glb')
+useGLTF.preload('https://cdn.lappas.be/room3.glb')
